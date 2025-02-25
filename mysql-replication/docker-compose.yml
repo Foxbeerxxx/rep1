@@ -31,7 +31,7 @@
           MYSQL_USER: repl_user
           MYSQL_PASSWORD: repl_password
           MYSQL_DATABASE: mydatabase
-          MYSQL_SERVER_ID: 2  # Установите уникальный ID (например, 2)
+          MYSQL_SERVER_ID: 2  
         volumes:
           - ./slave/init_slave.sql:/docker-entrypoint-initdb.d/init_slave.sql
           - slave_data:/var/lib/mysql
