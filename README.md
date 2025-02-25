@@ -50,6 +50,7 @@ START SLAVE;
 ![5](https://github.com/Foxbeerxxx/rep1/blob/main/img/img5.png)`
 
 8. `SHOW SLAVE STATUS\G`
+
 ![6](https://github.com/Foxbeerxxx/rep1/blob/main/img/img6.png)`
 
 
