@@ -24,9 +24,38 @@
 docker exec -it mysql-master mysql -u root -proot_password
 ```
 ![3](https://github.com/Foxbeerxxx/rep1/blob/main/img/img3.png)`
+5. `И запрос показать статус`
+```
+SHOW MASTER STATUS;
+```
+![4](https://github.com/Foxbeerxxx/rep1/blob/main/img/img4.png)`
 
-5. `Заполните здесь этапы выполнения, если требуется ....`
-6. 
+6. `Теперь настраиваем Slave, подключаемся к нему`
+```
+docker exec -it mysql-slave mysql -u root -proot_password
+```
+7. `И отправляем запрос`
+```
+CHANGE MASTER TO
+    MASTER_HOST='mysql-master',  
+    MASTER_USER='repl_user',
+    MASTER_PASSWORD='repl_password',
+    MASTER_LOG_FILE='binlog.000003', 
+    MASTER_LOG_POS=611;             
+
+START SLAVE;
+
+```
+
+![](https://github.com/Foxbeerxxx/rep1/blob/main/img/img5.png)`
+
+
+
+
+
+8. `Теперь настраиваем Slave, подключаемся к нему`
+9. `Теперь настраиваем Slave, подключаемся к нему`
+
 
 ```
 Поле для вставки кода...
