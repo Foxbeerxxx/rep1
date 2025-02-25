@@ -16,10 +16,15 @@
 
 1. `Опираясь на лекцию создаю следующее наполнение в папке mysql-replication`
 ![1](https://github.com/Foxbeerxxx/rep1/blob/main/img/img1.png)`
+2. `Заполняю файл  docker compose.yml и master>init.sql`
+3. `В дириктории выполняю docker-compose up -d`
+![2](https://github.com/Foxbeerxxx/rep1/blob/main/img/img2.png)`
+4. `Подклчасюь к мастер серверу`
+```
+docker exec -it mysql-master mysql -u root -proot_password
+```
+![3](https://github.com/Foxbeerxxx/rep1/blob/main/img/img3.png)`
 
-2. `Заполните здесь этапы выполнения, если требуется ....`
-3. `Заполните здесь этапы выполнения, если требуется ....`
-4. `Заполните здесь этапы выполнения, если требуется ....`
 5. `Заполните здесь этапы выполнения, если требуется ....`
 6. 
 
