@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  mysql-master:
+    image: mysql:8.0
+    container_name: mysql-master
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: repl_user
+      MYSQL_PASSWORD: repl_password
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - ./master/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - master_data:/var/lib/mysql
+    networks:
+      - mynetwork
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_password"]
+      timeout: 20s
+      retries: 3
+
+  mysql-slave:
+    image: mysql:8.0
+    container_name: mysql-slave
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: repl_user
+      MYSQL_PASSWORD: repl_password
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - ./slave/init_slave.sql:/docker-entrypoint-initdb.d/init_slave.sql
+      - slave_data:/var/lib/mysql
+    networks:
+      - mynetwork
+    depends_on:
+      mysql-master:
+        condition: service_healthy
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  master_data:
+  slave_data:
